@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 import type { Metadata } from "next";
-import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { person } from "@/content/data";
 import { GithubIcon, LinkedinIcon } from "@/components/BrandIcons";
 import { CopyEmailButton } from "@/components/CopyEmailButton";
@@ -40,9 +40,8 @@ export default function ContactPage() {
   return (
     <div className="space-y-12 max-w-4xl">
       <section className="space-y-3 pb-6 border-b border-line">
-        <div className="eyebrow">Get in touch</div>
-        <h1 className="font-mono text-6xl sm:text-7xl md:text-8xl font-black tracking-tight text-ink leading-none my-3">CONTACT</h1>
-        <p className="font-sans text-base sm:text-lg text-muted pt-2 leading-relaxed">{person.availability}</p>
+        <h1 className="font-mono text-6xl sm:text-7xl md:text-8xl font-black tracking-tight -ml-[0.04em] text-ink leading-none my-3">CONTACT</h1>
+        <div className="eyebrow">open to coffee chats, matcha chats, and more</div>
       </section>
 
       <section className="space-y-4">
@@ -78,9 +77,12 @@ export default function ContactPage() {
       </section>
 
       <section className="bg-surface-muted border border-line rounded-card p-6 text-xs font-mono text-muted space-y-1">
-        <span className="font-bold text-ink block uppercase">Based in</span>
-        <p>
-          {person.location} · {person.school}
+        <span className="font-bold text-ink block uppercase">Location</span>
+        <p className="flex items-center gap-1.5">
+          <MapPin className="w-3.5 h-3.5 text-ink" aria-hidden />
+          <span>{person.location}</span>
+          <span aria-label="moving to">→</span>
+          <span>SF Bay Area</span>
         </p>
       </section>
     </div>

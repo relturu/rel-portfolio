@@ -22,7 +22,17 @@ export function getProjects(slugs: string[]): Project[] {
 }
 
 export function getFeaturedProjects(): Project[] {
-  return getProjects(featuredSlugs);
+  return getProjects(featuredSlugs).filter((p) => !p.archived);
+}
+
+/** Projects on the main Work page. */
+export function getActiveProjects(): Project[] {
+  return projects.filter((p) => !p.archived);
+}
+
+/** Older projects, listed on /work/archive. */
+export function getArchivedProjects(): Project[] {
+  return sortProjects(projects.filter((p) => p.archived));
 }
 
 /** Projects that have their own page under /work/[slug]. */

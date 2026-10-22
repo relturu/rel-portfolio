@@ -3,13 +3,12 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { X } from "lucide-react";
-import { projects, roleFilterOrder, roleLabels } from "@/content/data";
-import type { ProjectContext, RoleTag } from "@/content/types";
+import { getActiveProjects } from "@/lib/projects";
 import { applyFilters, filtersToQuery, hasActiveFilters, parseFilters, type WorkFilters } from "@/lib/filters";
 import { FilterSidebar } from "./FilterSidebar";
 import { ProjectCard } from "./ProjectCard";
 
-export const emptyFilters: WorkFilters = { contexts: [], stacks: [] };
+export const emptyFilters: WorkFilters = { roles: [], contexts: [], stacks: [] };
 
 /** Reads filters from the URL. Must render inside <Suspense>. */
 export function WorkBrowser() {
@@ -22,56 +21,31 @@ const toggle = <T,>(list: T[], value: T) => (list.includes(value) ? list.filter(
 export function WorkView({ filters }: { filters: WorkFilters }) {
   const router = useRouter();
   const reduce = useReducedMotion();
-  const results = applyFilters(projects, filters);
+  const results = applyFilters(getActiveProjects(), filters);
 
   // Any manual filter change clears the lens.
-  const update = (next: { role?: RoleTag; contexts?: ProjectContext[]; stacks?: string[] }) => {
-    const query = filtersToQuery({
-      role: "role" in next ? next.role : filters.role,
-      contexts: next.contexts ?? filters.contexts,
-      stacks: next.stacks ?? filters.stacks,
-    });
-    router.push(`/work${query}`, { scroll: false });
-  };
-
-  const chip = (role: RoleTag | undefined, label: string) => {
-    const selected = !filters.lens && filters.role === role;
-    return (
-      <button
-        key={label}
-        type="button"
-        aria-pressed={selected}
-        onClick={() => update({ role })}
-        className={`px-3.5 py-1.5 rounded-control font-mono text-[11px] sm:text-xs tracking-wider uppercase transition-colors ${
-          selected ? "bg-ink text-page font-bold" : "bg-surface-muted text-ink border border-line hover:border-ink"
-        }`}
-      >
-        {label}
-      </button>
-    );
+  const active = filters.lens ? emptyFilters : filters;
+  const update = (next: Partial<Omit<WorkFilters, "lens">>) => {
+    router.push(`/work${filtersToQuery({ ...active, ...next, lens: undefined })}`, { scroll: false });
   };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
       <div className="lg:col-span-3">
         <FilterSidebar
-          selectedContexts={filters.lens ? [] : filters.contexts}
-          selectedStacks={filters.lens ? [] : filters.stacks}
-          onToggleContext={(c) => update({ contexts: toggle(filters.lens ? [] : filters.contexts, c) })}
-          onToggleStack={(s) => update({ stacks: toggle(filters.lens ? [] : filters.stacks, s) })}
+          selectedRoles={active.roles}
+          selectedContexts={active.contexts}
+          selectedStacks={active.stacks}
+          onToggleRole={(r) => update({ roles: toggle(active.roles, r) })}
+          onToggleContext={(c) => update({ contexts: toggle(active.contexts, c) })}
+          onToggleStack={(s) => update({ stacks: toggle(active.stacks, s) })}
         />
       </div>
 
       <div className="lg:col-span-9 space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <p className="font-mono text-xs font-bold uppercase tracking-wider text-muted" aria-live="polite">
-            {hasActiveFilters(filters) ? "Showing" : "All work"} ({results.length})
-          </p>
-          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-            {chip(undefined, "All")}
-            {roleFilterOrder.map((role) => chip(role, roleLabels[role]))}
-          </div>
-        </div>
+        <p className="font-mono text-xs font-bold uppercase tracking-wider text-muted" aria-live="polite">
+          {hasActiveFilters(filters) ? "Showing" : "All work"} ({results.length})
+        </p>
 
         {filters.lens && (
           <div className="flex items-center justify-between gap-3 bg-surface-muted border border-line rounded-[10px] px-4 py-3">
@@ -81,7 +55,7 @@ export function WorkView({ filters }: { filters: WorkFilters }) {
             </p>
             <button
               type="button"
-              onClick={() => update({ role: undefined, contexts: [], stacks: [] })}
+              onClick={() => update(emptyFilters)}
               className="inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-wider text-muted hover:text-ink"
             >
               <X className="w-3.5 h-3.5" aria-hidden />
@@ -112,7 +86,7 @@ export function WorkView({ filters }: { filters: WorkFilters }) {
             <p className="font-mono text-xs uppercase tracking-wider text-muted">No matching projects</p>
             <button
               type="button"
-              onClick={() => update({ role: undefined, contexts: [], stacks: [] })}
+              onClick={() => update(emptyFilters)}
               className="px-4 py-2 rounded-control bg-ink text-page font-mono text-xs tracking-wider uppercase font-semibold"
             >
               Reset to all work

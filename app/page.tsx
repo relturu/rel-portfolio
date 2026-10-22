@@ -16,13 +16,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="pt-4 sm:pt-10">
         <div className="space-y-6">
-          <div className="eyebrow flex items-center gap-2">
-            <span>{person.shortName} · Portfolio</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-ink opacity-30" aria-hidden />
-            <span>{person.school}</span>
-          </div>
-
-          <h1 className="font-mono text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink leading-[1.1] max-w-5xl">
+          <h1 className="font-mono text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink leading-[1.1] max-w-3xl">
             {person.heroHeadline}
           </h1>
 
@@ -59,7 +53,7 @@ export default function HomePage() {
       {/* I'm looking for… */}
       <Reveal>
         <section className="space-y-4" aria-labelledby="looking-for">
-          <h2 id="looking-for" className="eyebrow">Looking for · Starting summer 2027</h2>
+          <h2 id="looking-for" className="eyebrow">Open to full-time roles · Summer 2027</h2>
           <LensCards lenses={lensPresets} />
         </section>
       </Reveal>

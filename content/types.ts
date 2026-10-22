@@ -21,6 +21,7 @@ export type Project = {
   links?: { demo?: string; code?: string; slides?: string; video?: string; report?: string };
   featured?: boolean;
   nda?: boolean;
+  archived?: boolean; // listed on /work/archive instead of Work and Home
   expectedDate?: string; // in-progress only
   children?: string[]; // series only: slugs into seriesChildren
 };

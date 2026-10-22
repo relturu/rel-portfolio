@@ -33,7 +33,7 @@ export default async function ProjectPage({ params }: PageProps<"/work/[slug]">)
     );
   }
 
-  const caseStudies = getDetailProjects().filter((p) => p.type === "case-study");
+  const caseStudies = getDetailProjects().filter((p) => p.type === "case-study" && !p.archived);
   const index = caseStudies.findIndex((p) => p.slug === slug);
 
   return (

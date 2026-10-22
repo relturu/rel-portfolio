@@ -10,7 +10,7 @@ export function BackToTop() {
         const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
       }}
-      className="p-2 rounded-control border border-line bg-surface-muted text-muted hover:text-ink hover:border-ink transition-all"
+      className="p-2 rounded-control border border-ink bg-surface text-ink hover:bg-ink hover:text-page transition-all"
       aria-label="Back to top"
       title="Back to top"
     >

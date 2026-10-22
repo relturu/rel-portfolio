@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <section className="py-16 space-y-6">
       <div className="eyebrow">404 · Not found</div>
-      <h1 className="font-mono text-6xl sm:text-7xl md:text-8xl font-black tracking-tight text-ink leading-none">LOST.</h1>
+      <h1 className="font-mono text-6xl sm:text-7xl md:text-8xl font-black tracking-tight -ml-[0.04em] text-ink leading-none">LOST.</h1>
       <p className="font-sans text-base sm:text-lg text-muted max-w-xl">That page doesn&apos;t exist.</p>
       <Link
         href="/work"

@@ -1,10 +1,28 @@
 "use client";
 
+import { useState } from "react";
 import { SlidersHorizontal } from "lucide-react";
-import { contextLabels, stackFilterOptions } from "@/content/data";
-import type { ProjectContext } from "@/content/types";
+import { contextLabels, roleFilterOrder, roleLabels, stackFilterOptions } from "@/content/data";
+import type { ProjectContext, RoleTag } from "@/content/types";
+import { getActiveProjects } from "@/lib/projects";
 
-const contexts = Object.keys(contextLabels) as ProjectContext[];
+// Only offer options that at least one non-archived project uses.
+const active = getActiveProjects();
+const usedRoles = new Set(active.flatMap((p) => p.roleTags));
+const usedContexts = new Set(active.map((p) => p.context));
+const usedStacks = new Set(active.flatMap((p) => p.stack));
+
+const roles = roleFilterOrder.filter((r) => usedRoles.has(r));
+const allContexts = Object.keys(contextLabels) as ProjectContext[];
+const contexts = allContexts.filter((c) => usedContexts.has(c));
+const stacks = stackFilterOptions.filter((s) => usedStacks.has(s));
+
+/** Keep an unused option visible while it's selected (e.g. from an old link) so it can be cleared. */
+const withSelected = <T,>(options: T[], all: T[], selected: T[]) =>
+  all.filter((o) => options.includes(o) || selected.includes(o));
+
+/** Tech stack options shown before "+ N more". */
+const STACK_PREVIEW = 4;
 
 function CheckboxGroup<T extends string>({
   legend,
@@ -12,17 +30,27 @@ function CheckboxGroup<T extends string>({
   selected,
   label,
   onToggle,
+  preview,
 }: {
   legend: string;
   options: T[];
   selected: T[];
   label: (value: T) => string;
   onToggle: (value: T) => void;
+  /** Show only this many options until expanded. */
+  preview?: number;
 }) {
+  // Start expanded if a hidden option is already selected (e.g. from the URL).
+  const [expanded, setExpanded] = useState(
+    () => preview === undefined || options.slice(preview).some((o) => selected.includes(o)),
+  );
+  const hidden = preview === undefined ? 0 : options.length - preview;
+  const visible = expanded || hidden <= 0 ? options : options.slice(0, preview);
+
   return (
     <fieldset className="space-y-2">
       <legend className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink pb-2">{legend}</legend>
-      {options.map((value) => (
+      {visible.map((value) => (
         <label key={value} className="flex items-center gap-2 font-mono text-xs text-muted hover:text-ink cursor-pointer">
           <input
             type="checkbox"
@@ -33,27 +61,49 @@ function CheckboxGroup<T extends string>({
           <span>{label(value)}</span>
         </label>
       ))}
+      {hidden > 0 && (
+        <button
+          type="button"
+          aria-expanded={expanded}
+          onClick={() => setExpanded(!expanded)}
+          className="font-mono text-xs text-muted hover:text-ink underline-offset-2 hover:underline"
+        >
+          {expanded ? "− Show less" : `+ ${hidden} more`}
+        </button>
+      )}
     </fieldset>
   );
 }
 
 export function FilterSidebar({
+  selectedRoles,
   selectedContexts,
   selectedStacks,
+  onToggleRole,
   onToggleContext,
   onToggleStack,
 }: {
+  selectedRoles: RoleTag[];
   selectedContexts: ProjectContext[];
   selectedStacks: string[];
+  onToggleRole: (role: RoleTag) => void;
   onToggleContext: (context: ProjectContext) => void;
   onToggleStack: (stack: string) => void;
 }) {
-  const count = selectedContexts.length + selectedStacks.length;
+  const count = selectedRoles.length + selectedContexts.length + selectedStacks.length;
   const groups = (
     <div className="space-y-6">
       <CheckboxGroup
+        legend="What I did"
+        options={withSelected(roles, roleFilterOrder, selectedRoles)}
+        selected={selectedRoles}
+        label={(r) => roleLabels[r]}
+        onToggle={onToggleRole}
+      />
+      <div className="h-px bg-line" />
+      <CheckboxGroup
         legend="Context"
-        options={contexts}
+        options={withSelected(contexts, allContexts, selectedContexts)}
         selected={selectedContexts}
         label={(c) => contextLabels[c]}
         onToggle={onToggleContext}
@@ -61,10 +111,11 @@ export function FilterSidebar({
       <div className="h-px bg-line" />
       <CheckboxGroup
         legend="Tech stack"
-        options={stackFilterOptions}
+        options={withSelected(stacks, stackFilterOptions, selectedStacks)}
         selected={selectedStacks}
         label={(s) => s}
         onToggle={onToggleStack}
+        preview={STACK_PREVIEW}
       />
     </div>
   );

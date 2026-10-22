@@ -62,9 +62,9 @@ export const hobbyCategories: HobbyCategory[] = ["Music", "Movement", "Stories"]
 /* ------------------------------------------------------------------ */
 
 export const siteSettings: SiteSettings = {
-  title: "Rel Turu | Product, HCI & Design Portfolio",
+  title: "Arielle Turullols | Product, HCI & Design Portfolio",
   description:
-    "Portfolio for Rel Turu, CMU B.S. Information Systems & HCI (May 2027), targeting full-time Product Management, Tech Consulting, and Founder roles.",
+    "Portfolio for Arielle Turullols, CMU B.S. Information Systems & HCI (May 2027), targeting full-time Product Management, Tech Consulting, and Founder roles.",
   widgets: {
     music: { enabled: false, appleMusicUrl: "" },
     dailyWord: { enabled: false, fallbackWords: [] },
@@ -72,8 +72,8 @@ export const siteSettings: SiteSettings = {
 };
 
 export const person: Person = {
-  name: "Rel Turu",
-  shortName: "rel",
+  name: "Arielle Turullols",
+  shortName: "Arielle Turullols",
   degree: "B.S. Information Systems & Human-Computer Interaction",
   school: "Carnegie Mellon University",
   graduation: "May 2027",
@@ -82,10 +82,8 @@ export const person: Person = {
   linkedin: "https://www.linkedin.com/in/rel-turu",
   github: "https://github.com/relturu",
   resume: "/resume.pdf",
-  heroHeadline:
-    "I research, design, build, and lead digital products at the intersection of complex systems and human behavior.",
-  heroSubline:
-    "Carnegie Mellon University · B.S. Information Systems & HCI · Graduating May 2027 · Seeking full-time PM, Tech Consulting & Founder roles starting summer 2027.",
+  heroHeadline: "I research, design, build, and lead digital products.",
+  heroSubline: "Carnegie Mellon University · B.S. Information Systems & HCI",
   aboutTagline:
     "Product management and human-computer interaction builder at Carnegie Mellon University.",
   aboutLead:

@@ -64,8 +64,8 @@ Fonts: **JetBrains Mono** (`font-mono`) for headings, labels, tags, buttons, and
 - **Now panel:** a muted outer shell. Inside, a split card: an orbit ring with one green node per current project on the left; the "Building now" list on the right.
 - **Work page:**
   - Page title, then a hairline.
-  - A sidebar (Context, Tech stack checkboxes) beside the results. It's collapsible on mobile.
-  - Results row: count on the left, role chips on the right (All · Product strategy · Research · Design · Engineering · Leadership).
+  - A sidebar (What I did, Context, Tech stack checkboxes) beside the results. It's collapsible on mobile. What I did: Product strategy · Research · Design · Engineering · Leadership. Tech stack shows 4 options, then a "+ N more" toggle.
+  - Results row: the count.
   - A 2-column card grid.
   - When a lens is active, a "Lens · …" bar with Clear.
 - **Case study:**

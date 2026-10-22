@@ -33,10 +33,10 @@ export function Nav() {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-surface/95 backdrop-blur-md border-b border-line">
-      <nav aria-label="Main" className="max-w-[1200px] mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+      <nav aria-label="Main" className="max-w-[1200px] mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
         <Link href="/" className="group flex items-center" onClick={() => setOpen(false)}>
-          <span className="font-mono text-2xl sm:text-3xl font-extrabold tracking-tight text-ink group-hover:text-accent transition-colors">
-            {person.shortName}.
+          <span className="font-mono text-lg sm:text-xl font-extrabold tracking-tight text-ink group-hover:text-accent transition-colors">
+            {person.shortName}
           </span>
         </Link>
 

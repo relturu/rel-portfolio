@@ -1,6 +1,5 @@
 import { FileText } from "lucide-react";
 import { person } from "@/content/data";
-import { BackToTop } from "./BackToTop";
 import { GithubIcon, LinkedinIcon } from "./BrandIcons";
 
 const linkClass =
@@ -8,7 +7,7 @@ const linkClass =
 
 export function Footer() {
   return (
-    <footer className="w-full border-t border-line bg-surface mt-24">
+    <footer className="w-full border-t border-line bg-surface mt-6">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-12">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           {/* Left: email */}
@@ -19,7 +18,7 @@ export function Footer() {
             {person.email}
           </a>
 
-          {/* Right: external links + back to top */}
+          {/* Right: external links */}
           <div className="flex flex-wrap items-center gap-5 sm:gap-6">
             <a href={person.linkedin} target="_blank" rel="noopener noreferrer" className={`${linkClass} hover:text-accent`}>
               <LinkedinIcon className="w-3.5 h-3.5" />
@@ -33,7 +32,6 @@ export function Footer() {
               <FileText className="w-3.5 h-3.5" aria-hidden />
               <span>Resume</span>
             </a>
-            <BackToTop />
           </div>
         </div>
       </div>

@@ -5,12 +5,12 @@ import { sortProjects } from "./projects";
 /**
  * Work page filters live in the URL so links can pre-filter:
  *   ?lens=pm
- *   ?role=design&context=client&context=startup&stack=Python
+ *   ?role=design&role=research&context=client&stack=Python
  * A lens is exclusive: choosing any other filter clears it.
  */
 export type WorkFilters = {
   lens?: LensPreset;
-  role?: RoleTag;
+  roles: RoleTag[];
   contexts: ProjectContext[];
   stacks: string[];
 };
@@ -22,10 +22,9 @@ type ParamReader = { get(name: string): string | null; getAll(name: string): str
 
 export function parseFilters(params: ParamReader): WorkFilters {
   const lens = lensPresets.find((l) => l.id === params.get("lens"));
-  const role = params.get("role");
   return {
     lens,
-    role: roleValues.includes(role as RoleTag) ? (role as RoleTag) : undefined,
+    roles: params.getAll("role").filter((r): r is RoleTag => roleValues.includes(r as RoleTag)),
     contexts: params.getAll("context").filter((c): c is ProjectContext => contextValues.includes(c as ProjectContext)),
     stacks: params.getAll("stack"),
   };
@@ -34,7 +33,7 @@ export function parseFilters(params: ParamReader): WorkFilters {
 export function filtersToQuery(filters: Omit<WorkFilters, "lens"> & { lens?: string }): string {
   const params = new URLSearchParams();
   if (filters.lens) params.set("lens", filters.lens);
-  if (filters.role) params.set("role", filters.role);
+  filters.roles.forEach((r) => params.append("role", r));
   filters.contexts.forEach((c) => params.append("context", c));
   filters.stacks.forEach((s) => params.append("stack", s));
   const query = params.toString();
@@ -42,7 +41,7 @@ export function filtersToQuery(filters: Omit<WorkFilters, "lens"> & { lens?: str
 }
 
 export function hasActiveFilters(filters: WorkFilters): boolean {
-  return Boolean(filters.lens || filters.role || filters.contexts.length || filters.stacks.length);
+  return Boolean(filters.lens || filters.roles.length || filters.contexts.length || filters.stacks.length);
 }
 
 function matchesLens(project: Project, lens: LensPreset): boolean {
@@ -64,7 +63,7 @@ export function applyFilters(all: Project[], filters: WorkFilters): Project[] {
   return sortProjects(
     all.filter(
       (p) =>
-        (!filters.role || p.roleTags.includes(filters.role)) &&
+        (!filters.roles.length || filters.roles.some((r) => p.roleTags.includes(r))) &&
         (!filters.contexts.length || filters.contexts.includes(p.context)) &&
         (!filters.stacks.length || filters.stacks.some((s) => p.stack.includes(s))),
     ),

@@ -33,18 +33,22 @@ export default function AboutPage() {
   return (
     <div className="space-y-16 sm:space-y-20">
       <section className="space-y-4">
-        <div className="font-mono text-xs font-semibold tracking-widest uppercase text-muted">Background · Philosophy</div>
-        <h1 className="font-mono text-6xl sm:text-7xl md:text-8xl font-black tracking-tight text-ink leading-none my-3">ABOUT</h1>
-        <p className="font-sans text-base sm:text-lg text-muted max-w-3xl leading-relaxed">{person.aboutTagline}</p>
+        <h1 className="font-mono text-6xl sm:text-7xl md:text-8xl font-black tracking-tight -ml-[0.04em] text-ink leading-none my-3">ABOUT</h1>
+        <div className="font-mono text-xs font-semibold tracking-widest uppercase text-muted">Information Systems × HCI · Carnegie Mellon ’27</div>
       </section>
 
       <div className="h-px bg-line w-full" />
 
       <section className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
         <div className="md:col-span-4 space-y-2.5">
-          <TechnicalPlaceholder label={`Portrait · ${person.name}`} aspectRatio="4:3" sublabel="[PHOTO]" />
+          <TechnicalPlaceholder
+            label={`Portrait · ${person.name}`}
+            aspectRatio="4:3"
+            image="/images/backup_profile.jpg"
+            alt={`Portrait of ${person.name}`}
+          />
           <p className="font-mono text-[11px] text-muted tracking-tight">
-            {person.school} · {person.location}
+            Skógafoss, Iceland
           </p>
         </div>
         <div className="md:col-span-8 space-y-4">

@@ -48,8 +48,8 @@ export function NowPanel({ term, projects }: { term: string; projects: Project[]
               {projects.map((project, i) => (
                 <li key={project.slug} className="py-4 first:pt-0 last:pb-0 space-y-1.5">
                   <div className="flex items-baseline justify-between gap-3">
-                    <h3 className="font-mono text-xl sm:text-2xl font-extrabold tracking-tight text-ink leading-tight">
-                      <span className="text-muted font-bold text-sm mr-2">{String(i + 1).padStart(2, "0")}</span>
+                    <h3 className="font-mono text-base sm:text-lg font-bold tracking-tight text-ink leading-snug">
+                      <span className="text-muted font-bold text-xs mr-2">{String(i + 1).padStart(2, "0")}</span>
                       {project.title}
                     </h3>
                     {project.expectedDate && (

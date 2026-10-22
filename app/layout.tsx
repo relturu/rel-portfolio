@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { siteSettings } from "@/content/data";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { BackToTop } from "@/components/BackToTop";
 import { themeInitScript } from "@/components/ThemeToggle";
 import "@/styles/globals.css";
 
@@ -11,7 +12,7 @@ const mono = JetBrains_Mono({ variable: "--font-jetbrains-mono", subsets: ["lati
 const sans = Plus_Jakarta_Sans({ variable: "--font-plus-jakarta", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: { default: siteSettings.title, template: `%s | Rel Turu` },
+  title: { default: siteSettings.title, template: `%s | Arielle Turullols` },
   description: siteSettings.description,
   openGraph: { title: siteSettings.title, description: siteSettings.description, type: "website" },
   twitter: { card: "summary_large_image" },
@@ -36,6 +37,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main id="main" className="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
           {children}
         </main>
+        <div className="max-w-[1200px] w-full mx-auto px-4 sm:px-6 mt-12 sm:mt-16 flex justify-end">
+          <BackToTop />
+        </div>
         <Footer />
         <Analytics />
       </body>
