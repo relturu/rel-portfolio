@@ -86,7 +86,7 @@ export default function HomePage() {
       {/* Now */}
       <Reveal>
         <section>
-          <NowPanel term={nowPanel.term} items={nowPanel.items} />
+          <NowPanel term={nowPanel.term} image={nowPanel.image} items={nowPanel.items} />
         </section>
       </Reveal>
     </div>

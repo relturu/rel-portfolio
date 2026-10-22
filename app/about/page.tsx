@@ -53,16 +53,14 @@ export default function AboutPage() {
         </div>
         <div className="md:col-span-8 space-y-4">
           <p className="font-sans text-xl sm:text-2xl text-ink leading-relaxed">{person.aboutLead}</p>
-          {person.aboutBody.map((paragraph) => (
-            <p key={paragraph} className="font-sans text-base text-muted leading-relaxed">
-              {paragraph}
-            </p>
-          ))}
-          <div className="pt-2">
-            <span className="font-mono text-xs text-ink bg-surface-muted px-3 py-1.5 rounded-tag border border-line inline-block">
-              {person.degree} · {person.graduation}
-            </span>
-          </div>
+          <ul className="space-y-2 list-disc pl-5 marker:text-muted">
+            {person.aboutValues.map((value) => (
+              <li key={value.label} className="font-sans text-base text-muted leading-relaxed">
+                <span className="font-semibold text-ink">{value.label}.</span> {value.text}
+              </li>
+            ))}
+          </ul>
+          <p className="font-sans text-base text-muted leading-relaxed">{person.aboutOutside}</p>
         </div>
       </section>
 
@@ -74,10 +72,7 @@ export default function AboutPage() {
       </Reveal>
 
       <section className="space-y-6 pt-4 border-t border-line">
-        <div className="space-y-1">
-          <div className="font-mono text-xs font-semibold tracking-widest uppercase text-muted">Music · Movement · Stories</div>
-          <h2 className="font-mono text-5xl sm:text-7xl font-bold tracking-tight text-ink">Fun things.</h2>
-        </div>
+        <h2 className="font-mono text-3xl sm:text-5xl font-bold tracking-tight text-ink">What keeps me going</h2>
         <HobbyGrid hobbies={hobbies} />
       </section>
 

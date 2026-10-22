@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import type { NowPanelItem } from "@/content/types";
+import type { NowPanel as NowPanelData, NowPanelItem } from "@/content/types";
 import { getProject } from "@/lib/projects";
 
 /** Orbit node positions on the ring (viewBox 300×300, r=110); one per current project. */
@@ -9,7 +10,7 @@ const nodes = [
   { cx: 104, cy: 250 },
 ];
 
-export function NowPanel({ term, items }: { term: string; items: NowPanelItem[] }) {
+export function NowPanel({ term, image, items }: { term: string; image?: NowPanelData["image"]; items: NowPanelItem[] }) {
   // Hidden projects (e.g. stealth work) still appear here as text.
   const entries = items.flatMap((item) => {
     const project = getProject(item.slug);
@@ -27,24 +28,36 @@ export function NowPanel({ term, items }: { term: string; items: NowPanelItem[] 
       </div>
 
       <div className="bg-surface border border-line rounded-[18px] overflow-hidden grid grid-cols-1 md:grid-cols-2">
-        {/* Left: coordinate grid + orbit ring */}
+        {/* Left: photo, or coordinate grid + orbit ring */}
         <div className="relative min-h-[300px] sm:min-h-[380px] md:min-h-[420px] flex items-center justify-center p-6 border-b md:border-b-0 md:border-r border-line overflow-hidden">
-          <div className="absolute inset-0 opacity-40 dark:opacity-20 pointer-events-none bg-blueprint-grid" aria-hidden />
-          <div className="relative z-10 w-64 h-64 sm:w-72 sm:h-72 flex items-center justify-center">
-            <svg className="w-full h-full" viewBox="0 0 300 300" fill="none" aria-hidden>
-              <circle cx="150" cy="150" r="110" className="stroke-ink opacity-90 dark:opacity-80" strokeWidth="1.25" />
-              {nodes.slice(0, entries.length).map((n, i) => (
-                <circle key={i} cx={n.cx} cy={n.cy} r="5.5" className="fill-success" />
-              ))}
-            </svg>
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="bg-surface-muted border border-line px-3.5 py-1.5 rounded-control shadow-2xs">
-                <span className="font-mono text-[11px] sm:text-xs font-bold tracking-widest uppercase text-ink">
-                  In progress / {String(entries.length).padStart(2, "0")}
-                </span>
+          {image ? (
+            <>
+              <Image src={image.src} alt={image.alt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
+              {/* Fixed black/white (not theme tokens): the overlay sits on a photo in both themes. */}
+              <div className="absolute inset-0 bg-black/50" aria-hidden />
+            </>
+          ) : (
+            <>
+              <div className="absolute inset-0 opacity-40 dark:opacity-20 pointer-events-none bg-blueprint-grid" aria-hidden />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <svg className="w-64 h-64 sm:w-72 sm:h-72" viewBox="0 0 300 300" fill="none" aria-hidden>
+                  <circle cx="150" cy="150" r="110" className="stroke-ink opacity-90 dark:opacity-80" strokeWidth="1.25" />
+                  {nodes.slice(0, entries.length).map((n, i) => (
+                    <circle key={i} cx={n.cx} cy={n.cy} r="5.5" className="fill-success" />
+                  ))}
+                </svg>
               </div>
+            </>
+          )}
+          {image ? (
+            <span className="relative z-10 font-mono text-sm sm:text-base font-bold tracking-widest uppercase text-white">
+              In progress
+            </span>
+          ) : (
+            <div className="relative z-10 bg-surface-muted border border-line px-3.5 py-1.5 rounded-control shadow-2xs">
+              <span className="font-mono text-[11px] sm:text-xs font-bold tracking-widest uppercase text-ink">In progress</span>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Right: what I'm building now */}
@@ -52,11 +65,10 @@ export function NowPanel({ term, items }: { term: string; items: NowPanelItem[] 
           <div className="space-y-4">
             <div className="font-mono text-xs font-bold tracking-widest uppercase text-muted">Building now</div>
             <ol className="divide-y divide-line">
-              {entries.map(({ project, line, href }, i) => (
+              {entries.map(({ project, line, href }) => (
                 <li key={project.slug} className="py-4 first:pt-0 last:pb-0 space-y-1.5">
                   <div className="flex items-baseline justify-between gap-3">
                     <h3 className="font-mono text-base sm:text-lg font-bold tracking-tight text-ink leading-snug">
-                      <span className="text-muted font-bold text-xs mr-2">{String(i + 1).padStart(2, "0")}</span>
                       {href ? (
                         <Link href={href} className="hover:text-accent underline-offset-4 hover:underline transition-colors">
                           {project.title}

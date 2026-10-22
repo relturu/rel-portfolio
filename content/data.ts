@@ -7,7 +7,6 @@
 import type {
   ExperienceRow,
   Hobby,
-  HobbyCategory,
   LensPreset,
   NowPanel,
   Person,
@@ -56,8 +55,6 @@ export const stackFilterOptions: string[] = [
   "Ruby on Rails",
 ];
 
-export const hobbyCategories: HobbyCategory[] = ["Music", "Movement", "Stories"];
-
 /* ------------------------------------------------------------------ */
 /* Site + person                                                       */
 /* ------------------------------------------------------------------ */
@@ -89,7 +86,21 @@ export const person: Person = {
     "Product management and human-computer interaction builder at Carnegie Mellon University.",
   aboutLead:
     "I operate where systems architecture meets human-centered design. At Carnegie Mellon, I study Information Systems and Human-Computer Interaction.",
-  aboutBody: ["[ABOUT PARAGRAPH 1: how you work and what you care about]", "[ABOUT PARAGRAPH 2: outside of class]"],
+  aboutValues: [
+    {
+      label: "Environment",
+      text: "Much of my client work is for conservation, from the Western Pennsylvania Conservancy to Keep PA Beautiful.",
+    },
+    {
+      label: "People",
+      text: "I've taught 100+ students as a TA and designed my own StuCo course; the people using what I build come first.",
+    },
+    {
+      label: "Ethical tech",
+      text: "I'm interested in AI governance and in building technology responsibly, with design that respects user autonomy and privacy rather than relying on dark patterns or opaque data practices.",
+    },
+  ],
+  aboutOutside: "Outside of class, I love travel, soccer, piano, and baking.",
   availability:
     "Open to full-time Product Management, Tech Consulting, and Founder roles starting summer 2027.",
 };
@@ -370,7 +381,6 @@ export const lensPresets: LensPreset[] = [
     id: "pm",
     title: "Product Management",
     description: "Product strategy and research: WPC, AskScotty, a stealth golf startup.",
-    cta: "View PM work",
     roles: ["product", "research"],
     pinned: ["wpc-website-redesign", "askscotty", "stealth-golf-startup", "fluentish"],
   },
@@ -378,7 +388,6 @@ export const lensPresets: LensPreset[] = [
     id: "consulting",
     title: "Tech Consulting",
     description: "Client work and research: a stealth golf startup and WPC.",
-    cta: "View consulting work",
     roles: ["research"],
     contexts: ["client"],
     pinned: ["stealth-golf-startup", "wpc-website-redesign"],
@@ -387,7 +396,6 @@ export const lensPresets: LensPreset[] = [
     id: "founder",
     title: "Founder Work (0 → 1)",
     description: "Products I started and built: Moneymon, AskScotty.",
-    cta: "View 0 → 1 builds",
     roles: ["engineering", "design"],
     contexts: ["startup"],
     pinned: ["moneymon", "askscotty", "fluentish", "pocketfridge"],
@@ -404,6 +412,7 @@ export const stats: Stat[] = [
 
 export const nowPanel: NowPanel = {
   term: "Fall 2026",
+  image: { src: "/images/now-panel.jpg", alt: "Paper speech bubbles saying welcome in many languages" },
   items: [
     { slug: "fluentish", href: "/work/archive#fluentish" },
     { slug: "comic-vision-ai", line: "Co-founder and product lead at an early-stage startup." },
@@ -488,53 +497,11 @@ export const leadershipAndTeaching: ExperienceRow[] = [
 ];
 
 export const hobbies: Hobby[] = [
-  {
-    id: "cello",
-    category: "Music",
-    title: "Cello",
-    description: "[2–3 LINE DESCRIPTION]",
-    detail: "All University Orchestra",
-  },
-  {
-    id: "dance",
-    category: "Music",
-    title: "Dancer's Symposium & Greek Sing",
-    description: "[2–3 LINE DESCRIPTION]",
-    detail: "[DETAIL]",
-  },
-  {
-    id: "climbing",
-    category: "Movement",
-    title: "Climbing",
-    description: "[2–3 LINE DESCRIPTION]",
-    detail: "Bouldering",
-  },
-  {
-    id: "hiking",
-    category: "Movement",
-    title: "Hiking",
-    description: "[2–3 LINE DESCRIPTION]",
-    detail: "[DETAIL]",
-  },
-  {
-    id: "intramurals",
-    category: "Movement",
-    title: "Intramural Soccer & Volleyball",
-    description: "[2–3 LINE DESCRIPTION]",
-    detail: "[DETAIL]",
-  },
-  {
-    id: "ghibli",
-    category: "Stories",
-    title: "Studio Ghibli & Anime",
-    description: "[2–3 LINE DESCRIPTION]",
-    detail: "I teach a StuCo course on it",
-  },
-  {
-    id: "mahjong",
-    category: "Stories",
-    title: "Mahjong",
-    description: "[2–3 LINE DESCRIPTION]",
-    detail: "[DETAIL]",
-  },
+  { id: "cello", title: "Cello" },
+  { id: "dance", title: "Dancer's Symposium & Greek Sing" },
+  { id: "climbing", title: "Climbing" },
+  { id: "hiking", title: "Hiking" },
+  { id: "intramurals", title: "Intramural Soccer & Volleyball" },
+  { id: "ghibli", title: "Studio Ghibli & Anime" },
+  { id: "mahjong", title: "Mahjong" },
 ];

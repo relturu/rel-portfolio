@@ -41,7 +41,6 @@ export type LensPreset = {
   id: string;
   title: string;
   description: string;
-  cta: string;
   roles: RoleTag[]; // project matches if it has any of these roles
   contexts?: ProjectContext[]; // ...and (if set) one of these contexts
   pinned: string[]; // slugs shown first, in this order
@@ -60,14 +59,9 @@ export type ExperienceRow = {
   description: string;
 };
 
-export type HobbyCategory = "Music" | "Movement" | "Stories";
-
 export type Hobby = {
   id: string;
-  category: HobbyCategory;
-  title: string;
-  description: string;
-  detail: string;
+  title: string; // shown over the photo, bottom left
   image?: string;
 };
 
@@ -79,6 +73,7 @@ export type NowPanelItem = {
 
 export type NowPanel = {
   term: string;
+  image?: { src: string; alt: string }; // replaces the orbit ring
   items: NowPanelItem[]; // current projects shown in the Now panel
 };
 
@@ -97,7 +92,8 @@ export type Person = {
   heroSubline: string;
   aboutTagline: string;
   aboutLead: string;
-  aboutBody: string[];
+  aboutValues: { label: string; text: string }[]; // About: what I care about (bullets)
+  aboutOutside: string; // About: outside of class
   availability: string;
 };
 
