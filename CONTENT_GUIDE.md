@@ -84,7 +84,7 @@ After Dec 11, consider swapping fluent•ish in for Moneymon or the golf startup
 |---|---|---|---|---|---|
 | WPC Website Redesign | Client work | Summer 2025 – Now | Research, Design, Leadership | WordPress, Figma, Google Analytics, Microsoft Clarity | Analytics showed ~75% of interactions from action CTAs; site serves 64,000+ users; built design system; launch [DATE] |
 | AskScotty | Hackathon | Summer 2026 | Product strategy, Engineering | React Native, Expo, Django, PostgreSQL, Claude API | Live; tested with 5–10 users; 2 builders + 1 designer; I owned product + engineering decisions |
-| Moneymon | Startup / Founder | Spring 2025 – Spring 2026 | Engineering, Product strategy, Design | React Native, Expo, TypeScript, Supabase, PostgreSQL | Started at Moneythink Finnovation ([AWARD]); then built solo: 14-table schema, Row Level Security, custom auth, gamified layer |
+| Moneymon | Startup / Founder | Spring 2025 – Spring 2026 | Engineering, Product strategy, Design | React Native, Expo, TypeScript, Supabase, PostgreSQL | Started at Moneythink Finnovation (1st place); then built solo: 14-table schema, Row Level Security, custom auth, gamified layer |
 | Stealth AI Golf-Coaching Startup | Client work | Spring 2026 | Research, Product strategy | Figma | NDA: never use the company's real name anywhere on the site (including file names, slugs, alt text). No screens. Product Management Academy consulting; research disproved the founder's 3 core hypotheses |
 
 If time is short: launch with WPC + AskScotty written; show Moneymon + golf as cards marked "case study coming soon" until written.
@@ -140,7 +140,7 @@ CoDesign, SAV bike, AnyWay, AdVise, DHCS bakeoffs, Instacart DB, Sheraden, AI pr
 - 64,000+ users served by the WPC redesign
 - 100+ students taught (Information Systems TA)
 - 20 students in a course I designed (Ghibli StuCo)
-- [AWARD] at Moneythink Finnovation
+- 1st place at Moneythink Finnovation
 - 24 AI tools orchestrated in AskScotty (optional, technical)
 
 ### About: Experience
@@ -169,7 +169,7 @@ Availability line: open to full-time Product Management, Tech Consulting, and Fo
 
 ## 5. Open items to fill in
 - [ ] WPC launch date
-- [ ] Moneymon award name/placement
+- [x] Moneymon award name/placement (1st place)
 - [ ] Comic Vision AI: YOLO version, next milestone date
 - [ ] fluent•ish final stack
 - [ ] AI-Augmented Design projects 2–4 titles

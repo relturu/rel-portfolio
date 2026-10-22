@@ -17,6 +17,7 @@ export type Project = {
   roleTags: RoleTag[]; // strongest first
   stack: string[];
   image?: string; // path under /public
+  screens?: string[]; // several phone screens shown side by side; replaces image
   imageLabel?: string; // label for the placeholder when there is no image
   links?: { demo?: string; code?: string; slides?: string; video?: string; report?: string };
   featured?: boolean;

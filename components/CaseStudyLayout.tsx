@@ -69,7 +69,8 @@ export function CaseStudyLayout({
         <div className="pt-2">
           <TechnicalPlaceholder
             label={project.nda ? "NDA work" : (project.imageLabel ?? project.title)}
-            image={project.nda ? undefined : project.image}
+            image={project.image}
+            screens={project.screens}
             alt={`${project.title} hero image`}
             aspectRatio="16:9"
             sublabel={contextLabels[project.context]}

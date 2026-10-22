@@ -24,7 +24,8 @@ export function ProjectCard({ project, simplified = false }: { project: Project;
       <div className="relative">
         <TechnicalPlaceholder
           label={project.nda ? "NDA work" : (project.imageLabel ?? project.title)}
-          image={project.nda ? undefined : project.image}
+          image={project.image}
+          screens={project.screens}
           alt={`${project.title} preview`}
           aspectRatio="4:3"
           sublabel={contextLabels[project.context]}

@@ -18,6 +18,7 @@ export function TechnicalPlaceholder({
   aspectRatio = "4:3",
   sublabel,
   image,
+  screens,
   alt,
   className = "",
 }: {
@@ -25,9 +26,32 @@ export function TechnicalPlaceholder({
   aspectRatio?: AspectRatio;
   sublabel?: string;
   image?: string;
+  /** Several portrait screens shown side by side, uncropped. */
+  screens?: string[];
   alt?: string;
   className?: string;
 }) {
+  if (screens && screens.length > 0) {
+    return (
+      <div
+        className={`relative w-full ${aspectClass[aspectRatio]} bg-surface-muted border border-line overflow-hidden flex items-center justify-center gap-[3%] p-[5%] ${className}`}
+      >
+        {screens.map((src, i) => (
+          // Equal slots; each screen fills its slot and crops rather than stretching.
+          <div key={src} className="relative h-full flex-1 max-w-[30%] overflow-hidden rounded-[6px] border border-line">
+            <Image
+              src={src}
+              alt={`${alt ?? label} (${i + 1} of ${screens.length})`}
+              fill
+              sizes="(min-width: 768px) 20vw, 33vw"
+              className="object-cover"
+            />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   if (image) {
     return (
       <div className={`relative w-full ${aspectClass[aspectRatio]} bg-surface-muted border border-line overflow-hidden ${className}`}>
