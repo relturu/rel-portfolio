@@ -1,0 +1,530 @@
+/**
+ * All site content lives here (case study write-ups live in content/projects/*.mdx).
+ *
+ * Rule: never invent content. Anything unconfirmed stays as a visible
+ * [PLACEHOLDER] until the real value is known. See CONTENT_GUIDE.md.
+ */
+import type {
+  ExperienceRow,
+  Hobby,
+  HobbyCategory,
+  LensPreset,
+  NowPanel,
+  Person,
+  Project,
+  ProjectContext,
+  RoleTag,
+  SeriesChild,
+  SiteSettings,
+  Stat,
+} from "./types";
+
+/* ------------------------------------------------------------------ */
+/* Labels                                                              */
+/* ------------------------------------------------------------------ */
+
+export const roleLabels: Record<RoleTag, string> = {
+  product: "Product strategy",
+  research: "Research",
+  design: "Design",
+  engineering: "Engineering",
+  leadership: "Leadership",
+};
+
+export const contextLabels: Record<ProjectContext, string> = {
+  startup: "Startup / Founder",
+  client: "Client work",
+  hackathon: "Hackathon",
+  course: "Course",
+};
+
+/** Filter chip order on the Work page. */
+export const roleFilterOrder: RoleTag[] = ["product", "research", "design", "engineering", "leadership"];
+
+/** Sidebar "Tech stack" filter: the ~10 most used. */
+export const stackFilterOptions: string[] = [
+  "React Native",
+  "TypeScript",
+  "Python",
+  "PostgreSQL",
+  "Figma",
+  "WordPress",
+  "Swift",
+  "Docker",
+  "Claude API",
+  "Ruby on Rails",
+];
+
+export const hobbyCategories: HobbyCategory[] = ["Music", "Movement", "Stories"];
+
+/* ------------------------------------------------------------------ */
+/* Site + person                                                       */
+/* ------------------------------------------------------------------ */
+
+export const siteSettings: SiteSettings = {
+  title: "Rel Turu | Product, HCI & Design Portfolio",
+  description:
+    "Portfolio for Rel Turu, CMU B.S. Information Systems & HCI (May 2027), targeting full-time Product Management, Tech Consulting, and Founder roles.",
+  widgets: {
+    music: { enabled: false, appleMusicUrl: "" },
+    dailyWord: { enabled: false, fallbackWords: [] },
+  },
+};
+
+export const person: Person = {
+  name: "Rel Turu",
+  shortName: "rel",
+  degree: "B.S. Information Systems & Human-Computer Interaction",
+  school: "Carnegie Mellon University",
+  graduation: "May 2027",
+  location: "Pittsburgh, PA",
+  email: "aturullo@andrew.cmu.edu",
+  linkedin: "https://www.linkedin.com/in/rel-turu",
+  github: "https://github.com/relturu",
+  resume: "/resume.pdf",
+  heroHeadline:
+    "I research, design, build, and lead digital products at the intersection of complex systems and human behavior.",
+  heroSubline:
+    "Carnegie Mellon University · B.S. Information Systems & HCI · Graduating May 2027 · Seeking full-time PM, Tech Consulting & Founder roles starting summer 2027.",
+  aboutTagline:
+    "Product management and human-computer interaction builder at Carnegie Mellon University.",
+  aboutLead:
+    "I operate where systems architecture meets human-centered design. At Carnegie Mellon, I study Information Systems and Human-Computer Interaction.",
+  aboutBody: ["[ABOUT PARAGRAPH 1: how you work and what you care about]", "[ABOUT PARAGRAPH 2: outside of class]"],
+  availability:
+    "Open to full-time Product Management, Tech Consulting, and Founder roles starting summer 2027.",
+};
+
+/* ------------------------------------------------------------------ */
+/* Projects (Work page order: case studies, in progress, series, projects) */
+/* ------------------------------------------------------------------ */
+
+export const projects: Project[] = [
+  // Case studies
+  {
+    slug: "askscotty",
+    title: "AskScotty: Campus Q&A Agent",
+    type: "case-study",
+    context: "hackathon",
+    date: "Summer 2026",
+    outcome:
+      "Built a live campus Q&A agent that orchestrates 24 AI tools, tested with 5–10 users. I owned the product and engineering decisions.",
+    roleTags: ["product", "engineering"],
+    stack: ["React Native", "Expo", "Django", "PostgreSQL", "Claude API"],
+    imageLabel: "AskScotty · App screens",
+    featured: true,
+  },
+  {
+    slug: "wpc-website-redesign",
+    title: "WPC Website Redesign",
+    type: "case-study",
+    context: "client",
+    date: "Summer 2025 – Now",
+    outcome:
+      "Redesigned the Western Pennsylvania Conservancy site for 64,000+ users; analytics showed ~75% of interactions came from action CTAs.",
+    roleTags: ["research", "design", "leadership"],
+    stack: ["WordPress", "Figma", "Google Analytics", "Microsoft Clarity"],
+    imageLabel: "WPC · Before / after",
+    featured: true,
+  },
+  {
+    slug: "keep-pa-beautiful",
+    title: "Keep PA Beautiful: Website Redesign",
+    type: "case-study",
+    context: "client",
+    date: "Fall 2025 – Now",
+    outcome:
+      "Led a Design for America student team from research to redesign; the client then hired me to build it. Launch expected late 2027.",
+    roleTags: ["leadership", "research", "design"],
+    stack: ["WordPress", "Figma"],
+    imageLabel: "Keep PA Beautiful · Redesign",
+    featured: true,
+  },
+  {
+    slug: "stealth-golf-startup",
+    title: "Stealth AI Golf-Coaching Startup",
+    type: "case-study",
+    context: "client",
+    date: "Spring 2026",
+    outcome:
+      "Product consulting through Product Management Academy; my research disproved the founder's 3 core hypotheses.",
+    roleTags: ["research", "product"],
+    stack: ["Figma"],
+    imageLabel: "NDA work",
+    nda: true,
+  },
+  {
+    slug: "moneymon",
+    title: "Moneymon",
+    type: "case-study",
+    context: "startup",
+    date: "Spring 2025 – Spring 2026",
+    outcome:
+      "Started at Moneythink Finnovation ([AWARD]), then built solo: 14-table schema, Row Level Security, custom auth, and a gamified layer.",
+    roleTags: ["engineering", "product", "design"],
+    stack: ["React Native", "Expo", "TypeScript", "Supabase", "PostgreSQL"],
+    imageLabel: "Moneymon · App screens",
+    featured: true,
+  },
+
+  // In progress
+  {
+    slug: "fluentish",
+    title: "fluent•ish",
+    type: "in-progress",
+    context: "course",
+    date: "Fall 2026",
+    expectedDate: "Dec 2026",
+    outcome:
+      "My idea, built with a team of 4. I lead core feature decisions and the backend/data; final demo Dec 11, judged by alumni.",
+    roleTags: ["product", "engineering", "design"],
+    stack: ["Swift [CONFIRM]"],
+    imageLabel: "fluent•ish · Prototype",
+  },
+  {
+    slug: "comic-vision-ai",
+    title: "Comic Vision AI",
+    type: "in-progress",
+    context: "startup",
+    date: "[START] – Now",
+    expectedDate: "[DATE]",
+    outcome:
+      "Co-founder and product lead at an early-stage startup; I annotated 143 defects for the detection pipeline.",
+    roleTags: ["product", "engineering", "research"],
+    stack: ["Python", "[YOLO version]", "Grounding DINO"],
+    imageLabel: "Comic Vision AI · Detection",
+  },
+  {
+    slug: "movie-recommendation-service",
+    title: "Movie Recommendation Service",
+    type: "in-progress",
+    context: "course",
+    date: "Fall 2026",
+    expectedDate: "Dec 2026",
+    outcome:
+      "Project manager for a live recommendation service serving ~1M simulated users. The hybrid model was built by my teammate [TEAMMATE].",
+    roleTags: ["leadership", "product"],
+    stack: ["Python", "Kafka", "Docker"],
+    imageLabel: "Movie Recommendation Service",
+  },
+  {
+    slug: "social-events-app",
+    title: "Social Events Planning App",
+    type: "in-progress",
+    context: "course",
+    date: "Fall 2026",
+    expectedDate: "Dec 2026",
+    outcome: "Strategy and prototype for a social events planning app in Managing Digital Transformation.",
+    roleTags: ["product", "design"],
+    stack: ["[STACK]"],
+    imageLabel: "Social Events App · Prototype",
+  },
+
+  // Series
+  {
+    slug: "ai-augmented-design",
+    title: "AI-Augmented Design",
+    type: "series",
+    context: "course",
+    date: "Fall 2026",
+    outcome: "Redesigns and prototypes built with AI design tools: Google AI Studio and Figma Make.",
+    roleTags: ["design", "research"],
+    stack: ["Google AI Studio", "Figma Make"],
+    imageLabel: "AI-Augmented Design · Series",
+    children: ["setlog-redesign", "ai-design-project-2", "figma-competitor", "ai-design-projects-3-4"],
+  },
+
+  // Projects
+  {
+    slug: "pocketfridge",
+    title: "Pocketfridge",
+    type: "project",
+    context: "hackathon",
+    date: "Spring 2026",
+    outcome: "Hackathon build in TypeScript and Expo. [ONE-LINE DESCRIPTION + RESULT]",
+    roleTags: ["engineering"],
+    stack: ["TypeScript", "Expo"],
+    imageLabel: "Pocketfridge",
+  },
+  {
+    slug: "beli-feature-pitch",
+    title: "Beli Feature Pitch",
+    type: "project",
+    context: "course",
+    date: "Spring 2026",
+    outcome: "A research-backed feature pitch for Beli. [ONE-LINE RESULT] (Context: course vs. PMA [CONFIRM])",
+    roleTags: ["product", "research"],
+    stack: ["Figma"],
+    imageLabel: "Beli · Feature pitch",
+  },
+  {
+    slug: "perflection-ai-research",
+    title: "Perflection AI Research",
+    type: "project",
+    context: "client",
+    date: "Spring 2026",
+    outcome: "Research and product recommendations for Perflection AI. [KEY FINDING]",
+    roleTags: ["research", "product"],
+    stack: [],
+    imageLabel: "Perflection AI · Research",
+  },
+  {
+    slug: "classic-creamery",
+    title: "Classic Creamery",
+    type: "project",
+    context: "course",
+    date: "Spring 2026",
+    outcome: "Ruby on Rails and PostgreSQL application. [ONE-LINE DESCRIPTION]",
+    roleTags: ["engineering"],
+    stack: ["Ruby on Rails", "PostgreSQL"],
+    imageLabel: "Classic Creamery",
+  },
+  {
+    slug: "santorini",
+    title: "Santorini",
+    type: "project",
+    context: "course",
+    date: "Spring 2026",
+    outcome: "The Santorini board game, implemented in Java. [ONE-LINE DETAIL]",
+    roleTags: ["engineering"],
+    stack: ["Java"],
+    imageLabel: "Santorini",
+  },
+  {
+    slug: "mermaid-open-source",
+    title: "Mermaid.js Open Source",
+    type: "project",
+    context: "course",
+    date: "Fall 2025",
+    outcome: "Merged open-source contribution to Mermaid.js. [WHAT THE PR DOES]",
+    roleTags: ["engineering"],
+    stack: ["TypeScript", "Git"],
+    imageLabel: "Mermaid.js · Merged PR",
+  },
+  {
+    slug: "exposure-therapy-vr",
+    title: "Exposure Therapy VR",
+    type: "project",
+    context: "course",
+    date: "Fall 2025",
+    outcome: "A VR exposure therapy experience built in Unity. [ONE-LINE DETAIL]",
+    roleTags: ["design", "engineering"],
+    stack: ["Unity", "C#"],
+    imageLabel: "Exposure Therapy VR",
+  },
+  {
+    slug: "instagram-ai-bias-research",
+    title: "Instagram AI Bias Research",
+    type: "project",
+    context: "course",
+    date: "Spring 2025",
+    outcome: "Research on AI bias on Instagram. [KEY FINDING]",
+    roleTags: ["research"],
+    stack: [],
+    imageLabel: "Instagram AI Bias · Report",
+  },
+];
+
+export const seriesChildren: SeriesChild[] = [
+  {
+    slug: "setlog-redesign",
+    title: "Setlog App Redesign",
+    description: "[ONE-LINE DESCRIPTION]",
+    tools: ["Google AI Studio"],
+  },
+  {
+    slug: "ai-design-project-2",
+    title: "[PROJECT 2 TITLE]",
+    description: "[ONE-LINE DESCRIPTION]",
+    tools: ["Google AI Studio"],
+  },
+  {
+    slug: "figma-competitor",
+    title: "Figma Competitor [CONFIRM which project]",
+    description: "[ONE-LINE DESCRIPTION]",
+    tools: ["Figma Make"],
+  },
+  {
+    slug: "ai-design-projects-3-4",
+    title: "Projects 3–4 [TBD]",
+    description: "[ONE-LINE DESCRIPTION]",
+    tools: ["[TOOL]"],
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* Home                                                                */
+/* ------------------------------------------------------------------ */
+
+/** Featured cards on Home, in this order. */
+export const featuredSlugs = ["askscotty", "wpc-website-redesign", "keep-pa-beautiful", "moneymon"];
+
+export const lensPresets: LensPreset[] = [
+  {
+    id: "pm",
+    title: "Product Management",
+    description: "Product strategy and research: AskScotty, a stealth golf startup, WPC, Comic Vision AI, fluent•ish.",
+    cta: "View PM work",
+    roles: ["product", "research"],
+    pinned: ["askscotty", "stealth-golf-startup", "wpc-website-redesign", "comic-vision-ai", "fluentish"],
+  },
+  {
+    id: "consulting",
+    title: "Tech Consulting",
+    description: "Client work and research: a stealth golf startup, WPC, Keep PA Beautiful, Perflection AI.",
+    cta: "View consulting work",
+    roles: ["research"],
+    contexts: ["client"],
+    pinned: ["stealth-golf-startup", "wpc-website-redesign", "keep-pa-beautiful", "perflection-ai-research"],
+  },
+  {
+    id: "founder",
+    title: "Founder Work (0 → 1)",
+    description: "Products I started and built: Moneymon, Comic Vision AI, AskScotty, fluent•ish.",
+    cta: "View 0 → 1 builds",
+    roles: ["engineering", "design"],
+    contexts: ["startup"],
+    pinned: ["moneymon", "comic-vision-ai", "askscotty", "fluentish"],
+  },
+];
+
+export const stats: Stat[] = [
+  { value: "64,000+", label: "Users served", annotation: "WPC website redesign" },
+  { value: "100+", label: "Students taught", annotation: "Information Systems TA" },
+  { value: "20", label: "Students", annotation: "In a course I designed (Ghibli StuCo)" },
+  { value: "[AWARD]", label: "Finnovation", annotation: "Moneythink Finnovation" },
+  { value: "24", label: "AI tools", annotation: "Orchestrated in AskScotty" },
+];
+
+export const nowPanel: NowPanel = {
+  term: "Fall 2026",
+  slugs: ["fluentish", "comic-vision-ai", "movie-recommendation-service"],
+};
+
+/* ------------------------------------------------------------------ */
+/* About                                                               */
+/* ------------------------------------------------------------------ */
+
+export const experience: ExperienceRow[] = [
+  {
+    role: "Co-Founder, Product Lead",
+    organization: "Comic Vision AI",
+    dates: "[DATES]",
+    description: "Leading product at an early-stage computer vision startup; annotated 143 defects for the detection pipeline.",
+  },
+  {
+    role: "Web Designer & Developer",
+    organization: "Keep PA Beautiful",
+    dates: "[DATES]",
+    description: "Hired to build the website redesign my Design for America team researched and designed. Launch expected late 2027.",
+  },
+  {
+    role: "Web Design & Development Co-Lead",
+    organization: "Western Pennsylvania Conservancy",
+    dates: "[DATES]",
+    description: "Co-leading a redesign of a site serving 64,000+ users and building its design system. Earlier: Website Intern.",
+  },
+  {
+    role: "UI/UX Intern",
+    organization: "Sol-X Technologies",
+    dates: "[DATES]",
+    description: "[ONE-LINE DESCRIPTION]",
+  },
+];
+
+export const leadershipAndTeaching: ExperienceRow[] = [
+  {
+    role: "Teaching Assistant",
+    organization: "Information Systems Milieux",
+    dates: "[DATES]",
+    description: "Teaching 100+ students.",
+  },
+  {
+    role: "Teaching Assistant",
+    organization: "Cognitive Psychology",
+    dates: "[DATES]",
+    description: "[ONE-LINE DESCRIPTION]",
+  },
+  {
+    role: "Student Instructor",
+    organization: "Studio Ghibli StuCo",
+    dates: "[DATES]",
+    description: "Designed the curriculum and teach 20 students.",
+  },
+  {
+    role: "VP of Standards",
+    organization: "Multicultural Greek Council",
+    dates: "[DATES]",
+    description: "[ONE-LINE DESCRIPTION]",
+  },
+  {
+    role: "Warden, Academic Chair, Website Manager, and more",
+    organization: "Kappa Phi Lambda",
+    dates: "[DATES]",
+    description: "[ONE-LINE DESCRIPTION]",
+  },
+  {
+    role: "Project Lead",
+    organization: "Design for America",
+    dates: "[DATES]",
+    description: "Led the student team behind the Keep PA Beautiful research and redesign.",
+  },
+  {
+    role: "Product Consultant",
+    organization: "Product Management Academy",
+    dates: "[DATES]",
+    description: "Consulted for a stealth AI golf-coaching startup; research disproved the founder's 3 core hypotheses.",
+  },
+];
+
+export const hobbies: Hobby[] = [
+  {
+    id: "cello",
+    category: "Music",
+    title: "Cello",
+    description: "[2–3 LINE DESCRIPTION]",
+    detail: "All University Orchestra",
+  },
+  {
+    id: "dance",
+    category: "Music",
+    title: "Dancer's Symposium & Greek Sing",
+    description: "[2–3 LINE DESCRIPTION]",
+    detail: "[DETAIL]",
+  },
+  {
+    id: "climbing",
+    category: "Movement",
+    title: "Climbing",
+    description: "[2–3 LINE DESCRIPTION]",
+    detail: "Bouldering",
+  },
+  {
+    id: "hiking",
+    category: "Movement",
+    title: "Hiking",
+    description: "[2–3 LINE DESCRIPTION]",
+    detail: "[DETAIL]",
+  },
+  {
+    id: "intramurals",
+    category: "Movement",
+    title: "Intramural Soccer & Volleyball",
+    description: "[2–3 LINE DESCRIPTION]",
+    detail: "[DETAIL]",
+  },
+  {
+    id: "ghibli",
+    category: "Stories",
+    title: "Studio Ghibli & Anime",
+    description: "[2–3 LINE DESCRIPTION]",
+    detail: "I teach a StuCo course on it",
+  },
+  {
+    id: "mahjong",
+    category: "Stories",
+    title: "Mahjong",
+    description: "[2–3 LINE DESCRIPTION]",
+    detail: "[DETAIL]",
+  },
+];

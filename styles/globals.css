@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/* Dark mode is class-based (.dark on <html>), set by the theme toggle. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design tokens. Defined once here; components use the Tailwind theme names
+ * below (bg-surface, text-ink, border-line...) and never hard-code colors.
+ * A new theme or accent only requires changing these values.
+ */
+:root {
+  --bg: #F9F9F8;
+  --surface: #FFFFFF;
+  --surface-muted: #F3F3F2;
+  --ink: #111111;
+  --muted: #6B6B6B;
+  --line: #E4E4E2;
+  --accent: #2B5FAE;
+  --success: #3FB97A;
+  --success-ink: #047857;
+  --warning: #D97706;
+  --radius-card: 14px;
+  --radius-control: 6px;
+  --radius-tag: 4px;
+}
+
+.dark {
+  --bg: #121212;
+  --surface: #1A1A1A;
+  --surface-muted: #222222;
+  --ink: #F2F2F0;
+  --muted: #9A9A96;
+  --line: #2E2E2C;
+  --accent: #5D8FE6;
+  --success: #3FB97A;
+  --success-ink: #6EE7B7;
+  --warning: #FBBF24;
+}
+
+@theme inline {
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: var(--font-plus-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --color-page: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-success-ink: var(--success-ink);
+  --color-warning: var(--warning);
+  --radius-card: var(--radius-card);
+  --radius-control: var(--radius-control);
+  --radius-tag: var(--radius-tag);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Engineering notebook / technical crosshatch pattern */
+.bg-crosshatch {
+  background-color: var(--surface-muted);
+  background-image:
+    linear-gradient(45deg, var(--line) 25%, transparent 25%, transparent 75%, var(--line) 75%, var(--line)),
+    linear-gradient(45deg, var(--line) 25%, transparent 25%, transparent 75%, var(--line) 75%, var(--line));
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+}
+
+.bg-blueprint-grid {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Card hover animation */
+.card-hover {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px -4px rgba(0, 0, 0, 0.07);
+    border-color: var(--ink);
+  }
+}
+
+/* Eyebrow label styling */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media print {
+  nav, footer, .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+}

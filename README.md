@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# rel-portfolio
 
-## Getting Started
+Personal portfolio for Rel Turu (CMU Information Systems + HCI, May 2027). Built with Next.js (App Router), TypeScript, Tailwind CSS, MDX and Motion, and deployed on Vercel.
 
-First, run the development server:
+- `BUILD_GUIDE.md`: how the site is built and the rules for changing it
+- `CONTENT_GUIDE.md`: what content goes where, and how it's labeled
+- `DESIGN_SPEC.md`: design tokens, type scale and components
+
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build (checks types and pre-renders every page)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Editing content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Projects, stats, experience, hobbies, links:** `content/data.ts`
+- **Case study and series write-ups:** `content/projects/<slug>.mdx`. A new case study is a `data.ts` entry with `type: "case-study"` plus an `.mdx` file with the same slug.
+- **Images:** put them in `public/images/` and set `image: "/images/…"` on the project.
+- **Resume:** replace `public/resume.pdf` (currently a placeholder) with the real PDF.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Unconfirmed facts are shown as `[PLACEHOLDER]`s on purpose. Fill them in; don't guess. The open list is in `CONTENT_GUIDE.md` §5.
 
-## Learn More
+## Deploying
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Pushing to `main` deploys to production on Vercel; other branches get preview links.
