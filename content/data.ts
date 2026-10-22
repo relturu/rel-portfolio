@@ -36,6 +36,7 @@ export const contextLabels: Record<ProjectContext, string> = {
   client: "Client work",
   hackathon: "Hackathon",
   course: "Course",
+  independent: "Independent",
 };
 
 /** Filter chip order on the Work page. */
@@ -100,19 +101,6 @@ export const person: Person = {
 export const projects: Project[] = [
   // Case studies
   {
-    slug: "askscotty",
-    title: "AskScotty: Campus Q&A Agent",
-    type: "case-study",
-    context: "hackathon",
-    date: "Summer 2026",
-    outcome:
-      "Built a live campus Q&A agent that orchestrates 24 AI tools, tested with 5–10 users. I owned the product and engineering decisions.",
-    roleTags: ["product", "engineering"],
-    stack: ["React Native", "Expo", "Django", "PostgreSQL", "Claude API"],
-    imageLabel: "AskScotty · App screens",
-    featured: true,
-  },
-  {
     slug: "wpc-website-redesign",
     title: "WPC Website Redesign",
     type: "case-study",
@@ -126,6 +114,19 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "askscotty",
+    title: "AskScotty: Campus Q&A Agent",
+    type: "case-study",
+    context: "hackathon",
+    date: "Summer 2026",
+    outcome:
+      "Built a live campus Q&A agent that orchestrates 24 AI tools, tested with 5–10 users. I owned the product and engineering decisions.",
+    roleTags: ["product", "engineering"],
+    stack: ["React Native", "Expo", "Django", "PostgreSQL", "Claude API"],
+    imageLabel: "AskScotty · App screens",
+    featured: true,
+  },
+  {
     slug: "keep-pa-beautiful",
     title: "Keep PA Beautiful: Website Redesign",
     type: "case-study",
@@ -136,6 +137,19 @@ export const projects: Project[] = [
     roleTags: ["leadership", "research", "design"],
     stack: ["WordPress", "Figma"],
     imageLabel: "Keep PA Beautiful · Redesign",
+    hidden: true, // add back with client permission + visuals; lives in About until then
+  },
+  {
+    slug: "moneymon",
+    title: "Moneymon",
+    type: "case-study",
+    context: "startup",
+    date: "Spring 2025 – Spring 2026",
+    outcome:
+      "Started at Moneythink Finnovation ([AWARD]), then built solo: 14-table schema, Row Level Security, custom auth, and a gamified layer.",
+    roleTags: ["engineering", "product", "design"],
+    stack: ["React Native", "Expo", "TypeScript", "Supabase", "PostgreSQL"],
+    imageLabel: "Moneymon · App screens",
     featured: true,
   },
   {
@@ -150,18 +164,6 @@ export const projects: Project[] = [
     stack: ["Figma"],
     imageLabel: "NDA work",
     nda: true,
-  },
-  {
-    slug: "moneymon",
-    title: "Moneymon",
-    type: "case-study",
-    context: "startup",
-    date: "Spring 2025 – Spring 2026",
-    outcome:
-      "Started at Moneythink Finnovation ([AWARD]), then built solo: 14-table schema, Row Level Security, custom auth, and a gamified layer.",
-    roleTags: ["engineering", "product", "design"],
-    stack: ["React Native", "Expo", "TypeScript", "Supabase", "PostgreSQL"],
-    imageLabel: "Moneymon · App screens",
     featured: true,
   },
 
@@ -178,6 +180,7 @@ export const projects: Project[] = [
     roleTags: ["product", "engineering", "design"],
     stack: ["Swift [CONFIRM]"],
     imageLabel: "fluent•ish · Prototype",
+    archived: true,
   },
   {
     slug: "comic-vision-ai",
@@ -191,6 +194,7 @@ export const projects: Project[] = [
     roleTags: ["product", "engineering", "research"],
     stack: ["Python", "[YOLO version]", "Grounding DINO"],
     imageLabel: "Comic Vision AI · Detection",
+    hidden: true, // stealth, no public visuals: Now panel + About only until there is a demo or launch
   },
   {
     slug: "movie-recommendation-service",
@@ -204,6 +208,7 @@ export const projects: Project[] = [
     roleTags: ["leadership", "product"],
     stack: ["Python", "Kafka", "Docker"],
     imageLabel: "Movie Recommendation Service",
+    archived: true,
   },
   {
     slug: "social-events-app",
@@ -216,6 +221,7 @@ export const projects: Project[] = [
     roleTags: ["product", "design"],
     stack: ["[STACK]"],
     imageLabel: "Social Events App · Prototype",
+    hidden: true, // add to the archive after its final presentation
   },
 
   // Series
@@ -230,6 +236,7 @@ export const projects: Project[] = [
     stack: ["Google AI Studio", "Figma Make"],
     imageLabel: "AI-Augmented Design · Series",
     children: ["setlog-redesign", "ai-design-project-2", "figma-competitor", "ai-design-projects-3-4"],
+    archived: true,
   },
 
   // Projects
@@ -243,28 +250,19 @@ export const projects: Project[] = [
     roleTags: ["engineering"],
     stack: ["TypeScript", "Expo"],
     imageLabel: "Pocketfridge",
+    archived: true,
   },
   {
     slug: "beli-feature-pitch",
     title: "Beli Feature Pitch",
     type: "project",
-    context: "course",
+    context: "independent",
     date: "Spring 2026",
-    outcome: "A research-backed feature pitch for Beli. [ONE-LINE RESULT] (Context: course vs. PMA [CONFIRM])",
+    outcome: "A research-backed feature pitch for Beli, made for a club. [ONE-LINE RESULT]",
     roleTags: ["product", "research"],
     stack: ["Figma"],
     imageLabel: "Beli · Feature pitch",
-  },
-  {
-    slug: "perflection-ai-research",
-    title: "Perflection AI Research",
-    type: "project",
-    context: "client",
-    date: "Spring 2026",
-    outcome: "Research and product recommendations for Perflection AI. [KEY FINDING]",
-    roleTags: ["research", "product"],
-    stack: [],
-    imageLabel: "Perflection AI · Research",
+    archived: true,
   },
   {
     slug: "classic-creamery",
@@ -276,6 +274,7 @@ export const projects: Project[] = [
     roleTags: ["engineering"],
     stack: ["Ruby on Rails", "PostgreSQL"],
     imageLabel: "Classic Creamery",
+    archived: true,
   },
   {
     slug: "santorini",
@@ -287,6 +286,7 @@ export const projects: Project[] = [
     roleTags: ["engineering"],
     stack: ["Java"],
     imageLabel: "Santorini",
+    archived: true,
   },
   {
     slug: "mermaid-open-source",
@@ -298,6 +298,7 @@ export const projects: Project[] = [
     roleTags: ["engineering"],
     stack: ["TypeScript", "Git"],
     imageLabel: "Mermaid.js · Merged PR",
+    archived: true,
   },
   {
     slug: "exposure-therapy-vr",
@@ -309,6 +310,7 @@ export const projects: Project[] = [
     roleTags: ["design", "engineering"],
     stack: ["Unity", "C#"],
     imageLabel: "Exposure Therapy VR",
+    archived: true,
   },
   {
     slug: "instagram-ai-bias-research",
@@ -320,6 +322,7 @@ export const projects: Project[] = [
     roleTags: ["research"],
     stack: [],
     imageLabel: "Instagram AI Bias · Report",
+    archived: true,
   },
 ];
 
@@ -355,34 +358,34 @@ export const seriesChildren: SeriesChild[] = [
 /* ------------------------------------------------------------------ */
 
 /** Featured cards on Home, in this order. */
-export const featuredSlugs = ["askscotty", "wpc-website-redesign", "keep-pa-beautiful", "moneymon"];
+export const featuredSlugs = ["wpc-website-redesign", "askscotty", "moneymon", "stealth-golf-startup"];
 
 export const lensPresets: LensPreset[] = [
   {
     id: "pm",
     title: "Product Management",
-    description: "Product strategy and research: AskScotty, a stealth golf startup, WPC, Comic Vision AI, fluent•ish.",
+    description: "Product strategy and research: WPC, AskScotty, a stealth golf startup.",
     cta: "View PM work",
     roles: ["product", "research"],
-    pinned: ["askscotty", "stealth-golf-startup", "wpc-website-redesign", "comic-vision-ai", "fluentish"],
+    pinned: ["wpc-website-redesign", "askscotty", "stealth-golf-startup", "fluentish"],
   },
   {
     id: "consulting",
     title: "Tech Consulting",
-    description: "Client work and research: a stealth golf startup, WPC, Keep PA Beautiful, Perflection AI.",
+    description: "Client work and research: a stealth golf startup and WPC.",
     cta: "View consulting work",
     roles: ["research"],
     contexts: ["client"],
-    pinned: ["stealth-golf-startup", "wpc-website-redesign", "keep-pa-beautiful", "perflection-ai-research"],
+    pinned: ["stealth-golf-startup", "wpc-website-redesign"],
   },
   {
     id: "founder",
     title: "Founder Work (0 → 1)",
-    description: "Products I started and built: Moneymon, Comic Vision AI, AskScotty, fluent•ish.",
+    description: "Products I started and built: Moneymon, AskScotty.",
     cta: "View 0 → 1 builds",
     roles: ["engineering", "design"],
     contexts: ["startup"],
-    pinned: ["moneymon", "comic-vision-ai", "askscotty", "fluentish"],
+    pinned: ["moneymon", "askscotty", "fluentish", "pocketfridge"],
   },
 ];
 
@@ -396,7 +399,11 @@ export const stats: Stat[] = [
 
 export const nowPanel: NowPanel = {
   term: "Fall 2026",
-  slugs: ["fluentish", "comic-vision-ai", "movie-recommendation-service"],
+  items: [
+    { slug: "fluentish", href: "/work/archive#fluentish" },
+    { slug: "comic-vision-ai", line: "Co-founder and product lead at an early-stage startup." },
+    { slug: "movie-recommendation-service", line: "PM of a live ML recommendation service." },
+  ],
 };
 
 /* ------------------------------------------------------------------ */

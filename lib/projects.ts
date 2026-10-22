@@ -22,22 +22,22 @@ export function getProjects(slugs: string[]): Project[] {
 }
 
 export function getFeaturedProjects(): Project[] {
-  return getProjects(featuredSlugs).filter((p) => !p.archived);
+  return getProjects(featuredSlugs).filter((p) => !p.archived && !p.hidden);
 }
 
 /** Projects on the main Work page. */
 export function getActiveProjects(): Project[] {
-  return projects.filter((p) => !p.archived);
+  return projects.filter((p) => !p.archived && !p.hidden);
 }
 
 /** Older projects, listed on /work/archive. */
 export function getArchivedProjects(): Project[] {
-  return sortProjects(projects.filter((p) => p.archived));
+  return sortProjects(projects.filter((p) => p.archived && !p.hidden));
 }
 
 /** Projects that have their own page under /work/[slug]. */
 export function getDetailProjects(): Project[] {
-  return projects.filter(hasDetailPage);
+  return projects.filter((p) => hasDetailPage(p) && !p.hidden);
 }
 
 export function hasDetailPage(project: Project): boolean {

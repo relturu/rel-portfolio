@@ -4,7 +4,7 @@
  */
 
 export type ProjectType = "case-study" | "project" | "series" | "in-progress";
-export type ProjectContext = "startup" | "client" | "hackathon" | "course";
+export type ProjectContext = "startup" | "client" | "hackathon" | "course" | "independent";
 export type RoleTag = "product" | "research" | "design" | "engineering" | "leadership";
 
 export type Project = {
@@ -22,6 +22,7 @@ export type Project = {
   featured?: boolean;
   nda?: boolean;
   archived?: boolean; // listed on /work/archive instead of Work and Home
+  hidden?: boolean; // not shown anywhere yet
   expectedDate?: string; // in-progress only
   children?: string[]; // series only: slugs into seriesChildren
 };
@@ -69,9 +70,15 @@ export type Hobby = {
   image?: string;
 };
 
+export type NowPanelItem = {
+  slug: string;
+  line?: string; // replaces the project outcome
+  href?: string; // makes the title a link
+};
+
 export type NowPanel = {
   term: string;
-  slugs: string[]; // in-progress projects shown in the Now panel
+  items: NowPanelItem[]; // current projects shown in the Now panel
 };
 
 export type Person = {

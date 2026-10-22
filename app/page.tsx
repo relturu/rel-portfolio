@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, FileText, Mail } from "lucide-react";
 import { lensPresets, nowPanel, person, stats } from "@/content/data";
-import { getFeaturedProjects, getProjects } from "@/lib/projects";
+import { getFeaturedProjects } from "@/lib/projects";
 import { LensCards } from "@/components/LensCards";
 import { NowPanel } from "@/components/NowPanel";
 import { ProjectCard } from "@/components/ProjectCard";
@@ -86,7 +86,7 @@ export default function HomePage() {
       {/* Now */}
       <Reveal>
         <section>
-          <NowPanel term={nowPanel.term} projects={getProjects(nowPanel.slugs)} />
+          <NowPanel term={nowPanel.term} items={nowPanel.items} />
         </section>
       </Reveal>
     </div>

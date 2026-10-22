@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps<"/work/[slug]">): P
 export default async function ProjectPage({ params }: PageProps<"/work/[slug]">) {
   const { slug } = await params;
   const project = getProject(slug);
-  if (!project || (project.type !== "case-study" && project.type !== "series")) notFound();
+  if (!project || project.hidden || (project.type !== "case-study" && project.type !== "series")) notFound();
 
   const { default: Content, meta }: ProjectModule = await import(`@/content/projects/${slug}.mdx`);
 

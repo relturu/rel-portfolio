@@ -16,7 +16,7 @@ export type WorkFilters = {
 };
 
 const roleValues: RoleTag[] = ["product", "research", "design", "engineering", "leadership"];
-const contextValues: ProjectContext[] = ["startup", "client", "hackathon", "course"];
+const contextValues: ProjectContext[] = ["startup", "client", "hackathon", "course", "independent"];
 
 type ParamReader = { get(name: string): string | null; getAll(name: string): string[] };
 

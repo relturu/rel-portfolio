@@ -23,6 +23,7 @@ Every project card carries four kinds of labels. Keep them consistent so the fil
 | `Client work` | Done for a real outside organization (paid or volunteer) |
 | `Hackathon` | Built during a hackathon/competition and not continued |
 | `Course` | Class project (no real client) |
+| `Independent` | Club, personal, or self-initiated project (no class, no client, not a venture) |
 
 If a hackathon project kept going as my own product (Moneymon), use `Startup / Founder`.
 
@@ -56,57 +57,71 @@ Use terms: `Fall 2025`, `Spring 2026`, `Summer 2026`. Ongoing work: `Fall 2025 �
 
 ### Home page
 **Featured work (4 cards, in this order):**
-1. AskScotty
-2. WPC Website Redesign
-3. Keep PA Beautiful
-4. Moneymon
+1. WPC Website Redesign
+2. AskScotty
+3. Moneymon
+4. Stealth AI Golf-Coaching Startup
 
-**Now panel (current projects):** fluent•ish, Comic Vision AI, Movie Recommendation Service.
+After Dec 11, consider swapping fluent•ish in for Moneymon or the golf startup.
+
+**Now panel (current projects):** fluent•ish (links to its card), Comic Vision AI (one line, no image, no link: stealth), Movie Recommendation Service (one line).
 
 **"I'm looking for…" lens results** (what each preset should surface first):
 | Lens | Filter | Projects that should appear at top |
 |---|---|---|
-| Product management | Product strategy + Research | AskScotty, Stealth Golf Startup, WPC, Comic Vision AI, fluent•ish |
-| Consulting | Client work + Research | Stealth Golf Startup, WPC, Keep PA Beautiful, Perflection AI |
-| Founder work | Startup/Founder + Engineering + Design | Moneymon, Comic Vision AI, AskScotty, fluent•ish |
+| Product management | Product strategy + Research | WPC, AskScotty, Stealth Golf Startup, fluent•ish |
+| Consulting | Client work + Research | Stealth Golf Startup, WPC |
+| Founder work | Startup/Founder + Engineering + Design | Moneymon, AskScotty, fluent•ish, Pocketfridge |
 
-### Work page, in order
+**Not shown as cards (yet):**
+- **Comic Vision AI:** no public visuals and stealth, so a card would have nothing to show or click. It appears in the Now panel and About → Experience. Add a card once there's something public (demo, screenshots, launch).
+- **Keep PA Beautiful:** waiting on client permission and visuals. Appears in About → Experience; becomes a case study once approved.
 
-**Case studies**
+### Work page: four tiers
+
+**Tier 1: Featured case studies** (`CASE STUDY` badge, `featured: true`, full write-up page; also on Home)
 | Project | Context | Date | Role tags | Stack | Notes |
 |---|---|---|---|---|---|
-| AskScotty | Hackathon | Summer 2026 | Product strategy, Engineering | React Native, Expo, Django, PostgreSQL, Claude API | Live; tested with 5–10 users; 2 builders + 1 designer; I owned product + engineering decisions |
 | WPC Website Redesign | Client work | Summer 2025 – Now | Research, Design, Leadership | WordPress, Figma, Google Analytics, Microsoft Clarity | Analytics showed ~75% of interactions from action CTAs; site serves 64,000+ users; built design system; launch [DATE] |
-| Keep PA Beautiful | Client work | Fall 2025 – Now | Leadership, Research, Design | WordPress, Figma | Led DFA student team through research → redesign; client then hired me to build it; launch expected late 2027 |
-| Stealth AI Golf-Coaching Startup | Client work | Spring 2026 | Research, Product strategy | Figma | NDA: no name or screens. Product Management Academy consulting; research disproved the founder's 3 core hypotheses |
+| AskScotty | Hackathon | Summer 2026 | Product strategy, Engineering | React Native, Expo, Django, PostgreSQL, Claude API | Live; tested with 5–10 users; 2 builders + 1 designer; I owned product + engineering decisions |
 | Moneymon | Startup / Founder | Spring 2025 – Spring 2026 | Engineering, Product strategy, Design | React Native, Expo, TypeScript, Supabase, PostgreSQL | Started at Moneythink Finnovation ([AWARD]); then built solo: 14-table schema, Row Level Security, custom auth, gamified layer |
+| Stealth AI Golf-Coaching Startup | Client work | Spring 2026 | Research, Product strategy | Figma | NDA: never use the company's real name anywhere on the site (including file names, slugs, alt text). No screens. Product Management Academy consulting; research disproved the founder's 3 core hypotheses |
 
-**In progress**
+If time is short: launch with WPC + AskScotty written; show Moneymon + golf as cards marked "case study coming soon" until written.
+
+**Tier 2: Archive** (cards only; no full write-up)
+
+*In progress* (`IN PROGRESS` badge)
 | Project | Context | Expected | Role tags | Stack | Notes |
 |---|---|---|---|---|---|
-| fluent•ish | Course | Dec 2026 | Product strategy, Engineering, Design | Swift [CONFIRM] | My idea; team of 4; I lead core feature decisions + backend/data; final demo Dec 11, judged by alumni |
-| Comic Vision AI | Startup / Founder | [DATE] | Product strategy, Engineering, Research | Python, [YOLO version], Grounding DINO | Co-founder & product lead; annotated 143 defects; early stage |
-| Movie Recommendation Service | Course | Dec 2026 | Leadership, Product strategy | Python, Kafka, Docker | I'm project manager; live service for ~1M simulated users; hybrid model built by teammate (credit him) |
-| Social Events Planning App | Course | Dec 2026 | Product strategy, Design | [STACK] | Managing Digital Transformation; strategy + prototype |
+| fluent•ish | Course | Dec 2026 | Product strategy, Engineering, Design | Swift [CONFIRM] | My idea; team of 4; I lead core feature decisions + backend/data; final demo Dec 11, judged by alumni. Promote to Tier 1 after demo day |
+| Movie Recommendation Service | Course | Dec 2026 | Leadership, Product strategy | Python, Kafka, Docker | I'm project manager; live service for ~1M simulated users; hybrid model built by teammate (credit him); code link. Candidate for a case study after the semester (dashboards, A/B results) |
 
-**Series**
+*Series* (`SERIES (N)` badge)
 | Series | Context | Date | Role tags | Children |
 |---|---|---|---|---|
-| AI-Augmented Design | Course | Fall 2026 | Design, Research | Setlog app redesign (Google AI Studio) · Project 2 [TITLE] (Google AI Studio) · Figma competitor (Figma Make) [CONFIRM which project] · Projects 3–4 [TBD] |
+| AI-Augmented Design | Course | Fall 2026 | Design, Research | Setlog app redesign (Google AI Studio) · Project 2 [TITLE] (Google AI Studio) · Figma competitor (Figma Make) [CONFIRM which project] · Projects 3–4 [TBD]. First candidate to promote |
 
-**Projects**
+*Projects* (`PROJECT` badge)
 | Project | Context | Date | Role tags | Stack | Links |
 |---|---|---|---|---|---|
-| Pocketfridge | Hackathon | Spring 2026 | Engineering | TypeScript, Expo | [demo/code] |
-| Beli Feature Pitch | Course [CONFIRM] | Spring 2026 | Product strategy, Research | Figma | [slides] |
-| Perflection AI Research | Client work | Spring 2026 | Research, Product strategy | — | [slides] |
+| Pocketfridge | Hackathon | Spring 2026 | Engineering | TypeScript, Expo | [demo/code/slides] |
+| Beli Feature Pitch | Independent (club pitch) | Spring 2026 | Product strategy, Research | Figma | [slides] |
 | Classic Creamery | Course | Spring 2026 | Engineering | Ruby on Rails, PostgreSQL | [code] |
 | Santorini | Course | Spring 2026 | Engineering | Java | [code] |
 | Mermaid.js Open Source | Course | Fall 2025 | Engineering | TypeScript, Git | [merged PR link] |
 | Exposure Therapy VR | Course | Fall 2025 | Design, Engineering | Unity, C# | [video] |
 | Instagram AI Bias Research | Course | Spring 2025 | Research | — | [report] |
 
-**Leave off the site:** CoDesign, SAV bike, AnyWay, AdVise, DHCS bakeoffs, Instacart DB, Sheraden, AI prompting research. Add one back only if it has strong visuals.
+**Tier 3: Later** (not on the Work page yet)
+| Project | Where it appears for now | Add when |
+|---|---|---|
+| Keep PA Beautiful | About → Experience | Client approves showing it + visuals exist → case study (Client work; Leadership, Research, Design; WordPress, Figma) |
+| Comic Vision AI | Now panel (one line) + About → Experience | Something public exists → card, likely case study |
+| Social Events Planning App | Nowhere yet | After its final presentation → archive project card |
+
+**Tier 4: Leave off the site** (stays on resume/brag sheet only)
+CoDesign, SAV bike, AnyWay, AdVise, DHCS bakeoffs, Instacart DB, Sheraden, AI prompting research. Covrick appears only as an optional line in About → Experience. Add any project back only if it has strong visuals or a real result.
 
 ---
 

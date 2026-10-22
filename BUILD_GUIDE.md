@@ -41,7 +41,7 @@ type Project = {
   slug: string;
   title: string;
   type: "case-study" | "project" | "series" | "in-progress";
-  context: "startup" | "client" | "hackathon" | "course";
+  context: "startup" | "client" | "hackathon" | "course" | "independent";
   date: string;                 // e.g. "Fall 2026"
   outcome: string;              // one line
   roleTags: ("product" | "research" | "design" | "engineering" | "leadership")[];

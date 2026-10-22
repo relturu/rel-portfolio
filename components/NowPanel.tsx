@@ -1,5 +1,6 @@
 import Link from "next/link";
-import type { Project } from "@/content/types";
+import type { NowPanelItem } from "@/content/types";
+import { getProject } from "@/lib/projects";
 
 /** Orbit node positions on the ring (viewBox 300×300, r=110); one per current project. */
 const nodes = [
@@ -8,7 +9,13 @@ const nodes = [
   { cx: 104, cy: 250 },
 ];
 
-export function NowPanel({ term, projects }: { term: string; projects: Project[] }) {
+export function NowPanel({ term, items }: { term: string; items: NowPanelItem[] }) {
+  // Hidden projects (e.g. stealth work) still appear here as text.
+  const entries = items.flatMap((item) => {
+    const project = getProject(item.slug);
+    return project ? [{ ...item, project }] : [];
+  });
+
   return (
     <div className="bg-surface-muted border border-line rounded-[24px] sm:rounded-[28px] p-4 sm:p-7 md:p-9 space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between gap-3 px-1">
@@ -26,14 +33,14 @@ export function NowPanel({ term, projects }: { term: string; projects: Project[]
           <div className="relative z-10 w-64 h-64 sm:w-72 sm:h-72 flex items-center justify-center">
             <svg className="w-full h-full" viewBox="0 0 300 300" fill="none" aria-hidden>
               <circle cx="150" cy="150" r="110" className="stroke-ink opacity-90 dark:opacity-80" strokeWidth="1.25" />
-              {nodes.slice(0, projects.length).map((n, i) => (
+              {nodes.slice(0, entries.length).map((n, i) => (
                 <circle key={i} cx={n.cx} cy={n.cy} r="5.5" className="fill-success" />
               ))}
             </svg>
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="bg-surface-muted border border-line px-3.5 py-1.5 rounded-control shadow-2xs">
                 <span className="font-mono text-[11px] sm:text-xs font-bold tracking-widest uppercase text-ink">
-                  In progress / {String(projects.length).padStart(2, "0")}
+                  In progress / {String(entries.length).padStart(2, "0")}
                 </span>
               </div>
             </div>
@@ -45,12 +52,18 @@ export function NowPanel({ term, projects }: { term: string; projects: Project[]
           <div className="space-y-4">
             <div className="font-mono text-xs font-bold tracking-widest uppercase text-muted">Building now</div>
             <ol className="divide-y divide-line">
-              {projects.map((project, i) => (
+              {entries.map(({ project, line, href }, i) => (
                 <li key={project.slug} className="py-4 first:pt-0 last:pb-0 space-y-1.5">
                   <div className="flex items-baseline justify-between gap-3">
                     <h3 className="font-mono text-base sm:text-lg font-bold tracking-tight text-ink leading-snug">
                       <span className="text-muted font-bold text-xs mr-2">{String(i + 1).padStart(2, "0")}</span>
-                      {project.title}
+                      {href ? (
+                        <Link href={href} className="hover:text-accent underline-offset-4 hover:underline transition-colors">
+                          {project.title}
+                        </Link>
+                      ) : (
+                        project.title
+                      )}
                     </h3>
                     {project.expectedDate && (
                       <span className="font-mono text-[10px] sm:text-[11px] tracking-wider uppercase text-muted shrink-0">
@@ -58,7 +71,7 @@ export function NowPanel({ term, projects }: { term: string; projects: Project[]
                       </span>
                     )}
                   </div>
-                  <p className="font-sans text-sm text-muted leading-relaxed">{project.outcome}</p>
+                  <p className="font-sans text-sm text-muted leading-relaxed">{line ?? project.outcome}</p>
                 </li>
               ))}
             </ol>
